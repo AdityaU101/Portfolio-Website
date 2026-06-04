@@ -1,0 +1,182 @@
+/* ─── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Backgrounds */
+  --bg-base:        #f4f6ff;
+  --bg-surface:     #eef1fe;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f8f9ff;
+
+  /* Accent — rich indigo */
+  --accent:         #4338ca;
+  --accent-2:       #6d28d9;
+  --accent-light:   #818cf8;
+  --accent-glow:    rgba(67,56,202,0.18);
+  --accent-subtle:  rgba(67,56,202,0.07);
+
+  /* Text */
+  --text-primary:   #0f0e2a;
+  --text-secondary: #3b3f6b;
+  --text-muted:     #8b90b8;
+
+  /* Borders */
+  --border:         rgba(67,56,202,0.18);
+  --border-subtle:  rgba(67,56,202,0.08);
+
+  /* Tokens */
+  --radius:         14px;
+  --radius-lg:      22px;
+  --shadow-sm:      0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(67,56,202,0.06);
+  --shadow-card:    0 2px 8px rgba(0,0,0,0.05), 0 8px 28px rgba(67,56,202,0.09);
+  --shadow-hover:   0 8px 24px rgba(0,0,0,0.09), 0 20px 50px rgba(67,56,202,0.16);
+  --shadow-glow:    0 0 0 3px rgba(67,56,202,0.15);
+
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --nav-height:   64px;
+  --max-width:    1100px;
+  --transition:   0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb { background: var(--accent-light); border-radius: 3px; }
+
+/* Selection */
+::selection { background: var(--accent); color: #fff; }
+
+/* ─── Typography helpers ────────────────────────────────────────── */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 55%, #db2777 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Layout ────────────────────────────────────────────────────── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 6rem 0;
+}
+
+/* ─── Fade-in ───────────────────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in-delay-1 { transition-delay: 0.08s; }
+.fade-in-delay-2 { transition-delay: 0.16s; }
+.fade-in-delay-3 { transition-delay: 0.24s; }
+.fade-in-delay-4 { transition-delay: 0.32s; }
+.fade-in-delay-5 { transition-delay: 0.40s; }
+
+/* ─── Buttons ───────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff;
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(67,56,202,0.3);
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--accent);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+/* ─── Tag / Badge ───────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 0.22rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Section accent line ───────────────────────────────────────── */
+.section-line {
+  display: inline-block;
+  width: 48px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  margin-bottom: 1.25rem;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  section { padding: 4rem 0; }
+  .container { padding: 0 1.25rem; }
+}
