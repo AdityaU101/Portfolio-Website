@@ -5,7 +5,7 @@ const stats = [
   { value: '10+', label: 'Projects Built' },
   { value: '5+', label: 'Tech Domains' },
 ]
-
+// hello 
 export default function About() {
   const ref = useScrollReveal()
 
