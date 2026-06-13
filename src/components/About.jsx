@@ -19,7 +19,7 @@ export default function About() {
             <p className="about-body fade-in fade-in-delay-2">
               I'm a graduate student in Computer Science at <strong>Arizona State University</strong>,
               specializing in cloud infrastructure and machine learning systems. My work sits at the
-              intersection of <strong>intelligent systems</strong> and <strong>scalable engineering</strong> —
+              intersection of <strong>intelligent systems</strong> and <strong>scalable engineering</strong>,
               building things that are both smart and production-ready.
             </p>
             <p className="about-body fade-in fade-in-delay-2">

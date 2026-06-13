@@ -77,7 +77,7 @@ export default function Projects() {
           <div className="section-line" />
           <h2 className="section-title fade-in fade-in-delay-1">Featured Projects</h2>
           <p className="section-subtitle fade-in fade-in-delay-2">
-            A selection of what I've built — from ML systems to full-stack apps.
+            A selection of what I've built, from ML systems to full-stack apps.
           </p>
         </div>
 

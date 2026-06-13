@@ -31,7 +31,7 @@ export default function Contact() {
             <h2 className="section-title fade-in fade-in-delay-1">Let's Connect</h2>
             <p className="contact-bio fade-in fade-in-delay-2">
               I'm actively looking for <strong>SWE and Cloud Engineering roles</strong>.
-              Whether you have a project to discuss, a role to share, or just want to talk tech — my inbox is open.
+              Whether you have a project to discuss, a role to share, or just want to talk tech, my inbox is open.
             </p>
 
             <div className="contact-links fade-in fade-in-delay-3">
