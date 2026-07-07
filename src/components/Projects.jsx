@@ -4,6 +4,26 @@ import './Projects.css'
 
 const projects = [
   {
+    title: 'CloudArch',
+    description:
+      'AI-powered cloud architecture generator for AWS, Azure, and GCP. Describe your app in plain English and get production-ready Terraform IaC, Kubernetes manifests, CI/CD pipelines, cost estimates, and a full STRIDE threat model.',
+    tags: ['TypeScript', 'React', 'Node.js', 'Groq API', 'PostgreSQL', 'AI'],
+    domain: 'DevTools / AI',
+    icon: '🏗️',
+    highlight: true,
+    link: 'https://github.com/AdityaU101/CloudArch',
+  },
+  {
+    title: 'ClearChart',
+    description:
+      'Medical document analyzer that converts lab reports and discharge summaries into plain-English explanations. Uses hybrid RAG (BM25 + FAISS) over clinical guidelines, a deterministic anomaly rule engine, and Claude for synthesis.',
+    tags: ['Python', 'FastAPI', 'Claude API', 'RAG', 'Redis', 'PostgreSQL'],
+    domain: 'Cloud / ML',
+    icon: '🏥',
+    highlight: true,
+    link: 'https://github.com/AdityaU101/SecondOpinion',
+  },
+  {
     title: 'ML Driven VM Instance Selection',
     description:
       'Intelligent cloud resource allocation using ML to match workloads to optimal EC2 instance types, achieving ~18% cost-efficiency gain through SAR-based clustering.',
@@ -101,7 +121,7 @@ export default function Projects() {
 
         <div className="projects-footer fade-in">
           <a
-            href="https://github.com/AdityaU101/Projects"
+            href="https://github.com/AdityaU101"
             target="_blank"
             rel="noreferrer"
             className="btn btn-secondary"
