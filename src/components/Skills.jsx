@@ -84,7 +84,7 @@ export default function Skills() {
               className={`skill-group fade-in fade-in-delay-${Math.min(gi + 1, 5)}`}
             >
               <div className="skill-group-header">
-                <span className="skill-icon">{group.icon}</span>
+                <span className="skill-icon" aria-hidden="true">{group.icon}</span>
                 <h3 className="skill-category">{group.category}</h3>
               </div>
               <div className="skill-list">
@@ -107,7 +107,14 @@ function SkillBar({ skill }) {
         <span className="skill-name">{skill.name}</span>
         <span className="skill-pct">{skill.level}%</span>
       </div>
-      <div className="skill-track">
+      <div
+        className="skill-track"
+        role="progressbar"
+        aria-label={skill.name}
+        aria-valuenow={skill.level}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
         <div
           className="skill-fill"
           style={{ '--fill-width': `${skill.level}%`, '--fill-color': skill.color }}

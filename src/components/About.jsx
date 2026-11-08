@@ -46,14 +46,14 @@ export default function About() {
 
             <div className="about-code-card">
               <div className="code-header">
-                <div className="code-dots">
+                <div className="code-dots" aria-hidden="true">
                   <span className="dot red" />
                   <span className="dot yellow" />
                   <span className="dot green" />
                 </div>
                 <span className="code-filename">aditya.json</span>
               </div>
-              <pre className="code-body">{`{
+              <pre className="code-body" tabIndex={0} aria-label="aditya.json">{`{
   "focus": [
     "Cloud Engineering",
     "Machine Learning",
@@ -74,7 +74,7 @@ export default function About() {
 function DetailRow({ icon, label, sub }) {
   return (
     <div className="detail-row">
-      <span className="detail-icon">{icon}</span>
+      <span className="detail-icon" aria-hidden="true">{icon}</span>
       <div>
         <span className="detail-label">{label}</span>
         <span className="detail-sub">{sub}</span>

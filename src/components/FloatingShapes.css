@@ -2,9 +2,20 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: var(--z-bg);
   overflow: hidden;
 }
+
+/* Back-most parallax layer: drifts up slowly across the whole page */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .floating-shapes {
+      animation: shapesParallax linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+@keyframes shapesParallax { to { translate: 0 -12vh; } }
 
 .fs-shape {
   position: absolute;
@@ -16,27 +27,27 @@
 /* Circle */
 .fs-circle {
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, #4338ca, #6d28d9);
+  background: radial-gradient(circle at 40% 40%, var(--accent), var(--accent-2));
 }
 
 /* Ring (hollow circle) */
 .fs-ring {
   border-radius: 50%;
   background: transparent;
-  border: 3px solid #4338ca;
+  border: 3px solid var(--accent);
 }
 
 /* Square (slightly rounded) */
 .fs-square {
   border-radius: 18%;
-  background: linear-gradient(135deg, #4338ca, #818cf8);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
   animation-name: fsFloatSpin !important;
 }
 
 /* Diamond */
 .fs-diamond {
   border-radius: 10%;
-  background: linear-gradient(135deg, #6d28d9, #4338ca);
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
   animation-name: fsFloatSpin !important;
 }
 

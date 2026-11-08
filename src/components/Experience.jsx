@@ -64,9 +64,9 @@ function TimelineItem({ item, index }) {
     <div className={`timeline-item fade-in fade-in-delay-${Math.min(index + 1, 5)}`}>
       <div className="timeline-icon-col">
         <div className={`timeline-dot ${item.current ? 'current' : ''}`}>
-          <span>{item.icon}</span>
+          <span aria-hidden="true">{item.icon}</span>
         </div>
-        <div className="timeline-line" />
+        <div className="timeline-line" aria-hidden="true" />
       </div>
 
       <div className="timeline-content">
@@ -75,7 +75,7 @@ function TimelineItem({ item, index }) {
             <h3 className="timeline-title">{item.title}</h3>
             <div className="timeline-org">
               <span className="org-name">{item.org}</span>
-              <span className="org-sep">·</span>
+              <span className="org-sep" aria-hidden="true">·</span>
               <span className="org-location">{item.location}</span>
             </div>
           </div>

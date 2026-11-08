@@ -8,16 +8,18 @@ import Contact from './components/Contact'
 import FloatingShapes from './components/FloatingShapes'
 import './App.css'
 
-function WaveDivider({ flip = false, from = '#fff', to = '#f4f6ff' }) {
+// `from` / `to` take theme tokens so the waves follow light/dark mode.
+function WaveDivider({ flip = false, from = 'var(--bg-section-alt)', to = 'var(--bg-base)' }) {
   return (
     <div
       className="wave-divider"
+      aria-hidden="true"
       style={{ background: to, transform: flip ? 'scaleX(-1)' : 'none' }}
     >
       <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <path
           d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,0 L0,0 Z"
-          fill={from}
+          style={{ fill: from }}
         />
       </svg>
     </div>
@@ -29,17 +31,17 @@ export default function App() {
     <>
       <FloatingShapes />
       <Navbar />
-      <main style={{ position: 'relative', zIndex: 1 }}>
+      <main className="app-main">
         <Hero />
-        <WaveDivider from="#f4f6ff" to="#fff" />
+        <WaveDivider from="var(--bg-base)" to="var(--bg-section-alt)" />
         <About />
-        <WaveDivider from="#fff" to="#eef1fe" />
+        <WaveDivider from="var(--bg-section-alt)" to="var(--bg-base)" />
         <Projects />
-        <WaveDivider from="#f4f6ff" to="#eef1fe" flip />
+        <WaveDivider from="var(--bg-base)" to="var(--bg-surface)" flip />
         <Skills />
-        <WaveDivider from="#eef1fe" to="#fff" />
+        <WaveDivider from="var(--bg-base)" to="var(--bg-section-alt)" />
         <Experience />
-        <WaveDivider from="#fff" to="#f4f6ff" />
+        <WaveDivider from="var(--bg-section-alt)" to="var(--bg-base)" />
         <Contact />
       </main>
     </>
