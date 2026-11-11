@@ -3,8 +3,10 @@ import { useMemo, useRef, useState } from 'react'
 import { domains, projects, type Domain, type Project } from '../data/projects'
 import { Motif } from './Motif'
 import { Lines, Rise, SectionHead } from './Reveal'
+import { Screen, host } from './Screen'
 
 const EXPO = [0.16, 1, 0.3, 1] as const
+const WORDS = ['none', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen']
 const num = (i: number) => String(i + 1).padStart(2, '0')
 const target = (p: Project) => p.demo ?? p.repo
 const cta = (p: Project) => (p.demo ? 'Open live demo' : 'View source')
@@ -29,23 +31,75 @@ function Plate({ project, index, className = '' }: { project: Project; index: nu
             <span>{num(index)}</span>
             <span>{project.domain}</span>
           </div>
-          <Motif
-            kind={project.motif}
-            on={inView}
-            className="absolute inset-0 m-auto w-[62%] transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06] group-focus-visible:scale-[1.06]"
-          />
-          <span className="absolute bottom-4 left-5 flex translate-y-[180%] items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm text-paper transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 group-focus-visible:translate-y-0">
+          {project.demo ? (
+            <div className="absolute inset-x-[7%] top-[15%] transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5 group-hover:scale-[1.025] group-focus-visible:scale-[1.025]">
+              <Screen project={project} on={inView} />
+            </div>
+          ) : (
+            <Motif
+              kind={project.motif}
+              on={inView}
+              className="absolute inset-0 m-auto w-[62%] transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06] group-focus-visible:scale-[1.06]"
+            />
+          )}
+          <span className="absolute bottom-4 left-5 z-10 flex translate-y-[180%] items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm text-paper transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 group-focus-visible:translate-y-0">
             {cta(project)} <Arrow />
           </span>
         </div>
         <div className="mt-5 grid gap-3 md:grid-cols-[1fr_auto] md:items-baseline">
-          <h3 className="display text-4xl md:text-5xl">{project.title}</h3>
+          <h3 className="display text-3xl md:text-4xl">{project.title}</h3>
           <span className="label md:text-right">{project.demo ? 'Live demo' : 'Demo coming'}</span>
         </div>
         <p className="mt-3 max-w-xl text-mute">{project.blurb}</p>
         <p className="label mt-4">{project.stack.join('  ·  ')}</p>
       </a>
     </Rise>
+  )
+}
+
+function LiveDemos() {
+  const live = projects.filter((p) => p.demo)
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '0px 0px -15% 0px' })
+  if (live.length === 0) return null
+
+  return (
+    <div id="live" className="mt-28 scroll-mt-24 md:mt-40">
+      <div className="flex items-baseline justify-between border-t border-line pt-4">
+        <span className="label">Live demos</span>
+        <span className="label tabular-nums">{live.length} running</span>
+      </div>
+      <p className="mt-6 max-w-xl text-mute">
+        Each of these runs in the browser with sample data. Click a screen to open the site in a new tab.
+      </p>
+
+      <div
+        ref={ref}
+        className="-mx-[clamp(1.25rem,4vw,3.5rem)] mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto px-[clamp(1.25rem,4vw,3.5rem)] pb-4 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:gap-x-8 md:gap-y-14 md:overflow-visible md:px-0 lg:grid-cols-3"
+      >
+        {live.map((p, i) => (
+          <motion.a
+            key={p.id}
+            href={p.demo!}
+            target="_blank"
+            rel="noreferrer"
+            className="group w-[82vw] shrink-0 snap-start md:w-auto"
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, ease: EXPO, delay: (i % 3) * 0.08 + Math.floor(i / 3) * 0.06 }}
+          >
+            <div className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5 group-focus-visible:-translate-y-1.5">
+              <Screen project={p} on={inView} />
+            </div>
+            <div className="mt-4 grid grid-cols-[1fr_auto] items-baseline gap-x-4">
+              <span className="display text-xl transition-colors duration-300 group-hover:text-accent md:text-2xl">{p.title}</span>
+              <Arrow className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <span className="label col-span-2 mt-1.5 truncate normal-case tracking-normal">{host(p.demo!)}</span>
+            </div>
+          </motion.a>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -65,8 +119,8 @@ export function Work() {
     <section id="work" className="shell scroll-mt-20 pb-32 pt-24 md:pt-40">
       <SectionHead index="01" title="Selected work" note={`${projects.length} projects`} />
       <Lines
-        className="display mt-10 max-w-5xl text-[clamp(2.4rem,6.2vw,6rem)]"
-        lines={[<>Eighteen projects,</>, <>each one <em>running</em>.</>]}
+        className="display mt-8 max-w-3xl text-[clamp(1.85rem,3.6vw,3.25rem)]"
+        lines={[<>Eighteen projects,</>, <><em>{WORDS[projects.filter((p) => p.demo).length] ?? projects.filter((p) => p.demo).length}</em> of them live.</>]}
       />
 
       <div className="mt-16 grid gap-x-8 gap-y-20 md:mt-24 md:grid-cols-12">
@@ -76,7 +130,9 @@ export function Work() {
         <Plate project={featured[3]} index={3} className="md:col-span-7 md:mt-32" />
       </div>
 
-      <div className="mt-32 md:mt-48">
+      <LiveDemos />
+
+      <div className="mt-28 md:mt-40">
         <div className="flex flex-col gap-6 border-t border-line pt-4 md:flex-row md:items-center md:justify-between">
           <span className="label">Full index</span>
           <div role="group" aria-label="Filter projects by area" className="-mx-1 flex flex-wrap gap-1">
@@ -141,7 +197,7 @@ export function Work() {
                     style={{ opacity: dim ? 0.35 : 1 }}
                   >
                     <span className="label tabular-nums">{num(i)}</span>
-                    <span className="display text-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-3 group-hover:text-accent md:text-[2.5rem]">
+                    <span className="display text-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-3 group-hover:text-accent md:text-[1.875rem]">
                       {p.title}
                     </span>
                     <span className="label col-start-2 row-start-2 mt-1 md:col-start-auto md:row-start-auto md:mt-0">{p.domain}</span>
@@ -168,9 +224,13 @@ export function Work() {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.15 } }}
               transition={{ type: 'spring', stiffness: 320, damping: 26 }}
-              className="w-72 origin-top-left rounded-sm border border-line bg-card p-4 shadow-[0_24px_60px_-20px_rgb(0_0_0/0.35)]"
+              className="w-80 origin-top-left rounded-sm border border-line bg-card p-4 shadow-[0_24px_60px_-20px_rgb(0_0_0/0.35)]"
             >
-              <Motif key={hovered.id} kind={hovered.motif} className="w-full" />
+              {hovered.demo ? (
+                <Screen key={hovered.id} project={hovered} eager className="!shadow-none" />
+              ) : (
+                <Motif key={hovered.id} kind={hovered.motif} className="w-full" />
+              )}
               <p className="mt-2 text-[0.8125rem] leading-snug text-mute">{hovered.blurb}</p>
             </motion.div>
           )}

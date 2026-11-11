@@ -44,18 +44,31 @@ export function Hero() {
           Open to full-time roles from May 2027
         </motion.p>
 
-        <Lines
-          as="h1"
-          delay={0.15}
-          className="display text-[clamp(3.1rem,11.2vw,12.5rem)]"
-          lines={[
-            <>Cloud &amp; ML systems,</>,
-            <>
-              built to <em>hold up</em>
-            </>,
-            <>in production.</>,
-          ]}
-        />
+        <figure>
+          <Lines
+            as="h1"
+            delay={0.15}
+            className="display text-[clamp(1.6rem,4.2vw,3.9rem)] !leading-[1.08]"
+            lines={[
+              <>The most important property</>,
+              <>of a program is whether it</>,
+              <>
+                accomplishes <em>the intention</em>
+              </>,
+              <>
+                <em>of its user.</em>
+              </>,
+            ]}
+          />
+          <motion.figcaption
+            className="label mt-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+          >
+            C. A. R. Hoare, <span className="normal-case italic tracking-normal">An Axiomatic Basis for Computer Programming</span>, 1969
+          </motion.figcaption>
+        </figure>
 
         <div className="mt-12 grid gap-10 border-t border-line pt-6 md:grid-cols-12">
           <motion.p

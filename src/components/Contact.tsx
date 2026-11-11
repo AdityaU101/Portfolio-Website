@@ -43,7 +43,7 @@ export function Contact() {
       <SectionHead index="04" title="Contact" />
       <div className="mt-12 flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
         <Lines
-          className="display text-[clamp(3.25rem,12vw,13rem)]"
+          className="display text-[clamp(2.4rem,6.5vw,6rem)]"
           lines={[<>Let's build</>, <><em>something</em>.</>]}
         />
         <Rise className="shrink-0 md:pb-6">
