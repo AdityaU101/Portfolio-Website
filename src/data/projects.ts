@@ -218,7 +218,7 @@ export const projects: Project[] = [
     stack: ['Java', 'Python'],
     motif: 'brackets',
     repo: `${GH}/Programs`,
-    demo: null,
+    demo: 'https://programs-teal-two.vercel.app/',
   },
 ]
 
