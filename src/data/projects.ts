@@ -35,7 +35,7 @@ export const projects: Project[] = [
     stack: ['TypeScript', 'React', 'Express', 'Groq', 'PostgreSQL'],
     motif: 'graph',
     repo: `${GH}/CloudArch`,
-    demo: null,
+    demo: 'https://cloudarch-ebon.vercel.app/',
     featured: true,
   },
   {
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     stack: ['Python', 'FastAPI', 'Hybrid RAG', 'Redis', 'PostgreSQL'],
     motif: 'ranges',
     repo: `${GH}/SecondOpinion`,
-    demo: null,
+    demo: 'https://clear-chart.vercel.app/',
     featured: true,
   },
   {
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     stack: ['Python', 'FastAPI', 'Redis', 'PostgreSQL', 'React'],
     motif: 'diff',
     repo: `${P}/pr-code-review-assistant`,
-    demo: null,
+    demo: 'https://pr-code-review-assistant.vercel.app/',
     featured: true,
   },
   {
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     stack: ['Python', 'XGBoost', 'scikit-learn', 'AWS EC2'],
     motif: 'gauge',
     repo: `${P}/ML%20Driven%20VM%20Instance%20Selection%20for%20Cloud%20Workloads`,
-    demo: null,
+    demo: 'https://ml-driven-vm-instance-selection.vercel.app/',
   },
   {
     id: 'drowsiness',
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     stack: ['Python', 'Flask', 'OpenCV', 'dlib', 'React'],
     motif: 'signal',
     repo: `${P}/Drowsiness%20Detection%20System`,
-    demo: null,
+    demo: 'https://drowsiness-detection-beta.vercel.app/',
   },
   {
     id: 'data-at-scale',
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     stack: ['Kafka', 'Neo4j', 'Kubernetes', 'Docker', 'Python'],
     motif: 'pipeline',
     repo: `${P}/Data%20Processing%20at%20Scale%20Sem%20Project`,
-    demo: null,
+    demo: 'https://dps-project-dusky.vercel.app/',
   },
   {
     id: 'loan-management',
@@ -116,7 +116,7 @@ export const projects: Project[] = [
     stack: ['React', 'TypeScript', 'Express', 'MySQL'],
     motif: 'ledger',
     repo: `${P}/Loan-Management-System`,
-    demo: null,
+    demo: 'https://loan-management-system-mocha.vercel.app/',
   },
   {
     id: 'inventory',
@@ -127,7 +127,7 @@ export const projects: Project[] = [
     stack: ['React', 'Firebase', 'Vite'],
     motif: 'shelves',
     repo: `${P}/Inventory%20Management%20App`,
-    demo: null,
+    demo: 'https://inventory-management-system-xi-umber.vercel.app/',
   },
   {
     id: 'poetry-haven',
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     stack: ['React', 'CSS'],
     motif: 'verse',
     repo: `${P}/Poetry%20Haven%20Website`,
-    demo: null,
+    demo: 'https://poetry-haven-website.vercel.app/',
   },
   {
     id: 'todo',
